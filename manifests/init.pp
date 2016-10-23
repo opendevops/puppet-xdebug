@@ -23,19 +23,24 @@
 #
 # === Examples
 #
-#  class { 'xdebug':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
+# include xdebug
+# xdebug::config { 'local_xdebug': default_enable => '1' }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Matthew Hansen
 #
 # === Copyright
 #
-# Copyright 2016 Your name here, unless otherwise noted.
+# Copyright 2016 Matthew Hansen
 #
-class xdebug {
-
+class xdebug ($service = 'apache2') {
+  package { 'xdebug':
+    name    => 'php-xdebug',
+    ensure  => installed,
+    require => Package['php7.0-fpm'],
+    # notify  => Service[$service]
+    notify  => Service['php7.0-fpm']
+  }
 
 }

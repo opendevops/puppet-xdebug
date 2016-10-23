@@ -1,5 +1,11 @@
 # xdebug
 
+example:
+```
+include xdebug
+xdebug::config { 'local_xdebug': default_enable => '1' }
+```
+
 #### Table of Contents
 
 1. [Overview](#overview)
